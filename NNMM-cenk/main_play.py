@@ -282,9 +282,9 @@ def play(name, port=whiteport):
         print(("\tIllegal REMOVE: " + str(illegalREMOVE) +
               " (mean: " + str(meanIR) + ")"))
        
-        connection.send("" + str(TOc) + "\n")
-        connection.send("" + str(FROMc) + "\n")
-        connection.send("" + str(REMOVEc) + "\n")
+        connection.send(str.encode("" + str(TOc) + "\n"))
+        connection.send(str.encode("" + str(FROMc) + "\n"))
+        connection.send(str.encode("" + str(REMOVEc) + "\n"))
         sys.stdout.flush()
  
 def write_next_move_to_file(state,TOc,FROMc,REMOVEc):
