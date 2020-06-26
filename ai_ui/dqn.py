@@ -106,7 +106,7 @@ def trainNetwork(s, readout, sess):
     checkpoint = tf.train.get_checkpoint_state("saved_networks")
     if checkpoint and checkpoint.model_checkpoint_path:
         saver.restore(sess, checkpoint.model_checkpoint_path)
-        print ("Successfully loaded:", checkpoint.model_checkpoint_path)
+        print(("Successfully loaded:", checkpoint.model_checkpoint_path))
     else:
         print ("Could not find old network weights")
 
@@ -167,7 +167,7 @@ def trainNetwork(s, readout, sess):
                         s : s_j_batch}, options=run_options, run_metadata=run_metadata)
                     train_writer.add_run_metadata(run_metadata, 'step%03d' % t)
                     train_writer.add_summary(summary, t)
-                    print('Adding run metadata for', t)
+                    print(('Adding run metadata for', t))
                 else:  # Record a summary
                     summary, _ = sess.run([merged, train_step], feed_dict={
                         y : y_batch,
@@ -191,12 +191,12 @@ def trainNetwork(s, readout, sess):
                 state = "explore"
             else:
                 state = "train"
-            print ("TIMESTEP", t, "/ STATE", state, "/ EPSILON", epsilon, "/ REWARD", r_t)
+            print(("TIMESTEP", t, "/ STATE", state, "/ EPSILON", epsilon, "/ REWARD", r_t))
     except KeyboardInterrupt:
         train_writer.close()
         
         export_path = 'morris/out'
-        print ('Exporting trained model to', export_path)
+        print(('Exporting trained model to', export_path))
         saver = tf.train.Saver(sharded=True)
         model_exporter = exporter.Exporter(saver)
         model_exporter.init(

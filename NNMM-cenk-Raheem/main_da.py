@@ -14,8 +14,8 @@ def main(datasetname='DATASET.mock.txt',
          statesonly=False,
          expanded=False
          ):
-    print("Loading dataset " + datasetname + "\nstatesonly = " +
-          str(statesonly) + "\nexpanded = " + str(expanded))
+    print(("Loading dataset " + datasetname + "\nstatesonly = " +
+          str(statesonly) + "\nexpanded = " + str(expanded)))
     
     if statesonly:
         if(expanded):
@@ -89,12 +89,12 @@ if __name__ == '__main__':
     kwargs = {}
     usage = ("Usage: %s datasetname statesonly expanded" % sys.argv[0])
     if ('--help' in sys.argv) or ('-h' in sys.argv):
-        print("Neural Nine Men's Morris\n" +
+        print(("Neural Nine Men's Morris\n" +
               "Analysis of the phases of the states and the suggested moves " +
               "of the dataset:\n" +
               "Specify the dataset name, " + 
               "if the dataset is composed only by states (no move parts), " +
-              "if the dataset is already exapanded.")
+              "if the dataset is already exapanded."))
         
     if len(sys.argv) == 4:
         kwargs['datasetname'] = sys.argv[1]
@@ -107,7 +107,7 @@ if __name__ == '__main__':
               statesonly == "TRUE"):
             kwargs['statesonly'] = True
         else:
-            print usage
+            print(usage)
             sys.exit(0)
         
         expanded = sys.argv[3]
@@ -118,12 +118,12 @@ if __name__ == '__main__':
               expanded == "TRUE"):
             kwargs['expanded'] = True
         else:
-            print usage
+            print(usage)
             sys.exit(0)
         
         main(**kwargs)
     elif len(sys.argv) == 1:
         main(**kwargs)
     else:
-        print ("Wrong number of arguments: " + str(len(sys.argv))+"\n" + usage)
+        print(("Wrong number of arguments: " + str(len(sys.argv))+"\n" + usage))
 

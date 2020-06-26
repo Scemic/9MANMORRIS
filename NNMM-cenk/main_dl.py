@@ -34,10 +34,10 @@ def main(datasetname='DATASET.mock.txt',
     """
     
     
-    print("Testing " + datasetname + "\nexpanded = " + str(expanded))
+    print(("Testing " + datasetname + "\nexpanded = " + str(expanded)))
     
-    print("Testing legality characteristics of " + datasetname +
-          "\nLoading data...")
+    print(("Testing legality characteristics of " + datasetname +
+          "\nLoading data..."))
     
     if(expanded):
         A, B = load_expanded_states_dataset(datasetname)
@@ -49,9 +49,9 @@ def main(datasetname='DATASET.mock.txt',
     
     n_states = len(A)
     
-    TO_moves = range(1,25)
-    FROM_moves = range(0,25)
-    REMOVE_moves = range(0,25)
+    TO_moves = list(range(1,25))
+    FROM_moves = list(range(0,25))
+    REMOVE_moves = list(range(0,25))
     
     n_moves = len(TO_moves)*len(FROM_moves)*len(REMOVE_moves)
     
@@ -61,7 +61,7 @@ def main(datasetname='DATASET.mock.txt',
     # counter of states in which this move is legal
     count_moves = [0] * n_moves
     
-    print(str(n_states) + " data loaded. " + str(n_moves) + " moves considered")
+    print((str(n_states) + " data loaded. " + str(n_moves) + " moves considered"))
     
     fileStates = open(datasetname + "_legmeas_states.txt", 'w')
     fileMoves = open(datasetname + "_legmeas_moves.txt", 'w')
@@ -214,12 +214,12 @@ def main(datasetname='DATASET.mock.txt',
         # gives feedback about the amount of data processed
         while(percentage > perc):
             perc += 1
-        print(str(round(percentage,2)) + "%\t" + str(i) +
-              " data processed\ttime passed: " + str(act_time-start_time))
+        print((str(round(percentage,2)) + "%\t" + str(i) +
+              " data processed\ttime passed: " + str(act_time-start_time)))
         fileStates.flush()
     
     act_time = time.time()
-    print("Data processed. Seconds passed: " + str(act_time-start_time))
+    print(("Data processed. Seconds passed: " + str(act_time-start_time)))
     
     fileStates.close()
     
@@ -244,12 +244,12 @@ def main(datasetname='DATASET.mock.txt',
     for count in count_states:
         # count the number of moves as a percentage of the total
         percentage = count
-        if percentage in table.keys():
+        if percentage in list(table.keys()):
             table[percentage] += 1
         else:
             table[percentage] = 1
     
-    for percentage in table.keys():
+    for percentage in list(table.keys()):
         fileRecap.write(str(percentage) + "\t" + str(table[percentage]) + "\n")
     
     fileRecap.close()            
@@ -262,10 +262,10 @@ if __name__ == '__main__':
     kwargs = {}
     usage = ("Usage: %s datasetname expanded" % sys.argv[0])
     if ('--help' in sys.argv) or ('-h' in sys.argv):
-        print("Neural Nine Men's Morris\n" +
+        print(("Neural Nine Men's Morris\n" +
               "Analysis of the legality characteristics of the dataset:\n" +
               "Specify the dataset name and " + 
-              "if the dataset is already exapanded")
+              "if the dataset is already exapanded"))
     if len(sys.argv) == 3:
         kwargs['datasetname'] = sys.argv[1]
         
@@ -277,12 +277,12 @@ if __name__ == '__main__':
               expanded == "TRUE"):
             kwargs['expanded'] = True
         else:
-            print usage
+            print(usage)
             sys.exit(0)
         
         main(**kwargs)
     elif len(sys.argv) == 1 :
         main(**kwargs)
     else:
-        print ("Wrong number of arguments: " + str(len(sys.argv))+"\n" + usage)
+        print(("Wrong number of arguments: " + str(len(sys.argv))+"\n" + usage))
 

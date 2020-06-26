@@ -12,14 +12,14 @@ try:
             print()
             print('--------- YOUR TURN ---------')
             if game.player_num_pieces > 0:
-                print('you still have %d pieces to set down freely' % game.player_num_pieces)
+                print(('you still have %d pieces to set down freely' % game.player_num_pieces))
             print('select origin (will only matter, if applicable)')
             start = morris.blockGetClickIndex()
-            print('start = %d; select destination' % start)
+            print(('start = %d; select destination' % start))
             dest = morris.blockGetClickIndex()
-            print('dest = %d; select piece to take (will only matter, if applicable)' % dest)
+            print(('dest = %d; select piece to take (will only matter, if applicable)' % dest))
             take = morris.blockGetClickIndex()
-            print('take = %d' % take)
+            print(('take = %d' % take))
             
             x = np.ones(24)
             x[take] = 1.5

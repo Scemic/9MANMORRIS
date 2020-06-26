@@ -8,9 +8,9 @@ G.add_node("spam")        # adds node "spam"
 G.add_nodes_from("spam")  # adds 4 nodes: 's', 'p', 'a', 'm'
 G.add_edge(3, 'm')
 
-print(G.number_of_nodes())
+print((G.number_of_nodes()))
 
-print (G.number_of_edges())
+print((G.number_of_edges()))
 
 G.remove_node(2)
 G.remove_nodes_from("spam")
@@ -33,12 +33,12 @@ G.edges[1, 2]['color'] = "red"
 
 FG = nx.Graph()
 FG.add_weighted_edges_from([(1, 2, 0.125), (1, 3, 0.75), (2, 4, 1.2), (3, 4, 0.375)])
-for n, nbrs in FG.adj.items():
-	for nbr, eattr in nbrs.items():
+for n, nbrs in list(FG.adj.items()):
+	for nbr, eattr in list(nbrs.items()):
 		wt = eattr['weight']
-		if wt < 0.5: print('(%d, %d, %.3f)' % (n, nbr, wt))
+		if wt < 0.5: print(('(%d, %d, %.3f)' % (n, nbr, wt)))
 
 for (u, v, wt) in FG.edges.data('weight'):
-	if wt < 0.5: print('(%d, %d, %.3f)' % (u, v, wt))
+	if wt < 0.5: print(('(%d, %d, %.3f)' % (u, v, wt)))
 
-input()
+eval(input())

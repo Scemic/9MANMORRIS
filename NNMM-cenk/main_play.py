@@ -87,7 +87,7 @@ def choose(TOnet, FROMnet, REMOVEnet, state, data_format):
     orderc[FROMnet[1]] = 'F'
     orderc[REMOVEnet[1]] = 'R'
     order = "" + orderc[0] + orderc[1] + orderc[2]
-    print("\tOrder: " + order)    
+    print(("\tOrder: " + order))    
     
     nets = ['X', 'X', 'X']
     nets[TOnet[1]] = TOnet
@@ -125,7 +125,7 @@ def choose(TOnet, FROMnet, REMOVEnet, state, data_format):
         else:
             print("No legal option aviable")
             sys.exit()
-        print("\t\tTOchoice: " + str(FIRSTchoice[0]))
+        print(("\t\tTOchoice: " + str(FIRSTchoice[0])))
         
         vec_4_leg = [FIRSTchoice, None, None]
         
@@ -164,7 +164,7 @@ def choose(TOnet, FROMnet, REMOVEnet, state, data_format):
         else:
             print("No legal option aviable")
             sys.exit()
-        print("\t\tSECONDchoice: " + str(SECONDchoice[0]))
+        print(("\t\tSECONDchoice: " + str(SECONDchoice[0])))
         
         vec_4_leg = [FIRSTchoice, SECONDchoice, None]
         
@@ -201,7 +201,7 @@ def choose(TOnet, FROMnet, REMOVEnet, state, data_format):
         else:
             print("No legal option aviable")
             sys.exit()
-        print("\t\tTHIRDchoice: " + str(THIRDchoice[0]))
+        print(("\t\tTHIRDchoice: " + str(THIRDchoice[0])))
         
         vec_4_leg = [FIRSTchoice, SECONDchoice, THIRDchoice]
         
@@ -239,7 +239,7 @@ def play(name, port=whiteport):
     sys.stdout.flush()
     print("\tNetworks loaded")
 
-    print("Connecting to the game on port " + str(port))
+    print(("Connecting to the game on port " + str(port)))
     sys.stdout.flush()
     socket, connection = connect(port)
     
@@ -258,29 +258,29 @@ def play(name, port=whiteport):
 
         data = receive(connection)
         datastr = str(data)
-        print("String recieved: " + datastr)
+        print(("String recieved: " + datastr))
         
         # processing the state
         state = process_game_line(datastr)
-        print("State: " + str(state))
+        print(("State: " + str(state)))
         sys.stdout.flush()
         # answering
         TOc, FROMc, REMOVEc = choose(TOnet, FROMnet, REMOVEnet,
                                      state, data_format)
         
-        print("Choices: " + str(TOc) + " " + str(FROMc) + " " + str(REMOVEc))
+        print(("Choices: " + str(TOc) + " " + str(FROMc) + " " + str(REMOVEc)))
         write_next_move_to_file(state,TOc,FROMc,REMOVEc) #prints the current state and the next move to a file
         choices += 1
         meanIT = illegalTO * 1.0 / choices
         meanIF = illegalFROM * 1.0 / choices
         meanIR = illegalREMOVE * 1.0 / choices
 
-        print("\tIllegal TO: " + str(illegalTO) +
-              " (mean: " + str(meanIT) + ")")
-        print("\tIllegal FROM: " + str(illegalFROM) +
-              " (mean: " + str(meanIF) + ")")
-        print("\tIllegal REMOVE: " + str(illegalREMOVE) +
-              " (mean: " + str(meanIR) + ")")
+        print(("\tIllegal TO: " + str(illegalTO) +
+              " (mean: " + str(meanIT) + ")"))
+        print(("\tIllegal FROM: " + str(illegalFROM) +
+              " (mean: " + str(meanIF) + ")"))
+        print(("\tIllegal REMOVE: " + str(illegalREMOVE) +
+              " (mean: " + str(meanIR) + ")"))
        
         connection.send("" + str(TOc) + "\n")
         connection.send("" + str(FROMc) + "\n")
@@ -302,7 +302,7 @@ def connect(port):
     try:
         s.bind(('', port))
     except socket.error as msg:
-        print 'Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
+        print(('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]))
         exit(4)
     print("\tSocket binding completed")
     s.listen(100)
@@ -318,12 +318,12 @@ def receive(s):
     bytes_recd = 0
     while bytes_recd < MSGLEN:
         chunk = s.recv(min(MSGLEN - bytes_recd, 4096))
-        print(str(chunk))
+        print((str(chunk)))
         if chunk == '':
             raise RuntimeError("socket connection broken")
         chunks.append(chunk)
         bytes_recd = bytes_recd + len(chunk)
-    data = ''.join(chunks)
+    data = b''.join(chunks)
 
     return data
 
@@ -332,10 +332,10 @@ if __name__ == '__main__':
     kwargs = {}
     usage = ("Usage: %s netname team" % sys.argv[0])
     if ('--help' in sys.argv) or ('-h' in sys.argv):
-        print("Neural Nine Men's Morris\n" +
+        print(("Neural Nine Men's Morris\n" +
               "Playing clinet:\n" +
               "Specify the name of the networks and the team " + 
-              "color (because of the team port)")
+              "color (because of the team port)"))
     if len(sys.argv) == 3:
         kwargs['netname'] = sys.argv[1]
         kwargs['team'] = sys.argv[2]
@@ -344,7 +344,7 @@ if __name__ == '__main__':
     elif len(sys.argv) == 1 :
         main(**kwargs)
     else:
-        print ("Wrong number of arguments: " + str(len(sys.argv))+"\n" + usage)
+        print(("Wrong number of arguments: " + str(len(sys.argv))+"\n" + usage))
 
 
 

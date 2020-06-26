@@ -57,7 +57,7 @@ def train(name='prova',
     else:
         A, B = load_dataset(datasetname)
     
-    print("Dataset loaded: " + str(len(B)) + " data")
+    print(("Dataset loaded: " + str(len(B)) + " data"))
 
     # if the size of the set are expressed as decimal, they are the percentage
     # of the total set
@@ -72,7 +72,7 @@ def train(name='prova',
     if os.path.isfile(name + "_indexes.txt"):
         indexes = load_indexes(name + "_indexes.txt")
     else:
-        indexes = range(len(A))
+        indexes = list(range(len(A)))
         random.shuffle(indexes)
         write_indexes(name + "_indexes.txt", indexes)
     
@@ -171,9 +171,9 @@ def train(name='prova',
 
     print ("Data processed!\n")
 
-    print("Using " + str(len(X_train)) + " data for training, " +
+    print(("Using " + str(len(X_train)) + " data for training, " +
           str(len(X_val)) + " for validation and " +
-          str(len(X_test)) + " for testing \n")
+          str(len(X_test)) + " for testing \n"))
     
     if load:
         results_file = open(name + "_" + movepart + ".txt", 'a')
@@ -202,7 +202,7 @@ def train(name='prova',
                 data_format = data_format)
     time2 = time.time()
     totaltime = time2-time1
-    print("\tTIME OCCURRED: " + str(totaltime))
+    print(("\tTIME OCCURRED: " + str(totaltime)))
 
 
 # lr: learning rate
@@ -229,7 +229,7 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
                 load=False, initial_epoch=0,
                 data_format = "binary raw"):
 
-    print("Starting training " + str(name))
+    print(("Starting training " + str(name)))
     input_size = len(X_train[0])
 
     lr = theano.shared(lr_alfa0)
@@ -255,7 +255,7 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
         nout = 25
         # nout = 24
     else:
-        print("Unknown movepart: " + movepart)
+        print(("Unknown movepart: " + movepart))
         sys.exit()
 
     
@@ -330,7 +330,7 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
 
     if regularization:
         config_string += "\nregularization\t"
-        config_string += str(reg_type.func_name) + "\t"
+        config_string += str(reg_type.__name__) + "\t"
         config_string += str(reg_weight)
         reg = rgl.regularize_layer_params(network, reg_type) * reg_weight
         loss = loss + reg
@@ -381,7 +381,7 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
         config_string += "\nb1\t" + str(b1) + "\nb2\t" + str(b2)
         config_string += "\nep:\t" + str (num_epochs) + "\t"
         config_string += "pat:\t" + str(patience) + "\n"
-        print("\nSelected configuration:\n" + config_string)
+        print(("\nSelected configuration:\n" + config_string))
         results_file.write(config_string)
 
     results_file.flush()
@@ -426,7 +426,7 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
         train_err = 0
         val_err = 0
         
-        indexes = range(len(X_train))
+        indexes = list(range(len(X_train)))
         random.shuffle(indexes)
         
         for num in range(0, num_batch):
@@ -490,10 +490,10 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
         results_file.write("\n")
 
         # Then we print the results for this epoch:
-        print(time.strftime('%H:%M %d %b: ') +
+        print((time.strftime('%H:%M %d %b: ') +
               "- Epoch {} of {} took {:.3f}s".format(
                 epoch + 1, num_epochs, time.time() - start_time) + 
-				"\tLr: " + str(lr))
+				"\tLr: " + str(lr)))
         
         if better:
             save_net_weights(network, name + '_' + movepart)
@@ -502,7 +502,7 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
 
     time2 = time.time()
     totaltime = time2-time1
-    print("TIME OCCURRED: " + str(totaltime))
+    print(("TIME OCCURRED: " + str(totaltime)))
     results_file.write("TIME OCCURRED: " + str(totaltime) + " seconds\n")
 
 
@@ -526,8 +526,8 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
     
     
     print("Final results:")
-    print("  test loss:\t\t\t" + "%.6f" % (test_err))
-    print("  test accuracy:\t\t" + "%.2f" % (test_acc * 100) + " %")
+    print(("  test loss:\t\t\t" + "%.6f" % (test_err)))
+    print(("  test accuracy:\t\t" + "%.2f" % (test_acc * 100) + " %"))
     
     results_file.write("Test:\t " + "%.6f" % (test_err) + "\t" +
                        "%.6f" % (test_acc * 100))
@@ -535,8 +535,8 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
     results_file.flush();
                       
     val_err, val_acc = val_fn(X_val, y_val)
-    print("  val loss:\t\t\t" + "%.6f" % (val_err))
-    print("  val accuracy:\t\t" + "%.2f" % (val_acc * 100) + " %")
+    print(("  val loss:\t\t\t" + "%.6f" % (val_err)))
+    print(("  val accuracy:\t\t" + "%.2f" % (val_acc * 100) + " %"))
     
     results_file.write("Validation:\t " + "%.6f" % (val_err) + "\t" +
                        "%.6f" % (val_acc * 100))
@@ -564,8 +564,8 @@ def do_training(X_train, X_val, X_test, y_train, y_val, y_test,
     train_err = train_err/size
     train_acc = train_acc/size
 
-    print("  train loss:\t\t\t" + "%.6f" % (train_err))
-    print("  train accuracy:\t\t" + "%.2f" % (train_acc * 100) + " %")
+    print(("  train loss:\t\t\t" + "%.6f" % (train_err)))
+    print(("  train accuracy:\t\t" + "%.2f" % (train_acc * 100) + " %"))
     
     results_file.write("Training:\t " + "%.6f" % (train_err) +
                        "\t" + "%.6f" % (train_acc * 100))

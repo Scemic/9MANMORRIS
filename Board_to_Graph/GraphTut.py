@@ -32,8 +32,8 @@ G.add_node("spam")        # adds node "spam"
 G.add_nodes_from("spam")  # adds 4 nodes: 's', 'p', 'a', 'm'
 G.add_edge(3, 'm')
 
-print(G.number_of_nodes())
+print((G.number_of_nodes()))
 
-print (G.number_of_edges())
+print((G.number_of_edges()))
 
-input()
+eval(input())

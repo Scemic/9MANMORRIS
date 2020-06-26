@@ -15,8 +15,8 @@ def main(datasetname='DATASET.mock.txt',
          name='TEST-rawest-TFR'
          ):
     
-    print("Testing dataset " + datasetname + "\nexpanded = " + str(expanded) +
-          "\nnetworks: " + name)
+    print(("Testing dataset " + datasetname + "\nexpanded = " + str(expanded) +
+          "\nnetworks: " + name))
     test_networks_reliability(datasetname, expanded, name)
     
     
@@ -24,11 +24,11 @@ if __name__ == '__main__':
     kwargs = {}
     usage = ("Usage: %s datasetname expanded netname" % sys.argv[0])
     if ('--help' in sys.argv) or ('-h' in sys.argv):
-        print("Neural Nine Men's Morris\n" +
+        print(("Neural Nine Men's Morris\n" +
               "Reliability test mode:\n" +
               "Specify the dataset name, " +
               "if the dataset is already exapanded and " +
-              "the name of the networks.")
+              "the name of the networks."))
         
     if len(sys.argv) == 4 :
         kwargs['datasetname'] = sys.argv[1]
@@ -40,11 +40,11 @@ if __name__ == '__main__':
               expanded == "TRUE"):
             kwargs['expanded'] = True
         else:
-            print usage
+            print(usage)
             sys.exit(0)
         kwargs['name'] = sys.argv[3]
         main(**kwargs)
     elif len(sys.argv) == 1 :
         main(**kwargs)
     else:
-        print ("Wrong number of arguments: " + str(len(sys.argv))+"\n" + usage)
+        print(("Wrong number of arguments: " + str(len(sys.argv))+"\n" + usage))

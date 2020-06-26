@@ -52,14 +52,14 @@ def test_networks_reliability(datasetname, expanded, name,
     
     start_time = time.time()
    
-    print("Testing " + name)
+    print(("Testing " + name))
     print("Loading networks...")
-    print("\tloading " + name + "_TO")
+    print(("\tloading " + name + "_TO"))
     TOnet = load_net(name + "_TO")
-    print("\tloading " + name + "_FROM")
+    print(("\tloading " + name + "_FROM"))
     FROMnet = load_net(name + "_FROM") 
 
-    print("\tloading " + name + "_REMOVE")
+    print(("\tloading " + name + "_REMOVE"))
     REMOVEnet = load_net(name + "_REMOVE")
     print("\tNetworks loaded!")
     
@@ -85,15 +85,15 @@ def test_networks_reliability(datasetname, expanded, name,
     ordernames[REMOVEnet[2]] = "REMOVE"
     
     
-    print("\tOrder: " + order)
+    print(("\tOrder: " + order))
     
-    print("Loading data from \"" + datasetname + "\" ...")
+    print(("Loading data from \"" + datasetname + "\" ..."))
     if expanded:
         A, B = load_expanded_states_dataset(datasetname)
     else:
         A, B = load_states_dataset(datasetname)
 
-    print("\tData loaded! Loaded: " + str(len(A)) + " data")
+    print(("\tData loaded! Loaded: " + str(len(A)) + " data"))
     
     
     numbatch = int(len(A) / batchsize) + 1
@@ -330,11 +330,11 @@ def test_networks_reliability(datasetname, expanded, name,
         while(percentage > perc):
             perc += 1
         if perc!=100:
-            print(str(round(percentage,2)) + "%\t" + str(i*batchsize) +
-                  " data processed\ttime passed: " + str(act_time-start_time))
+            print((str(round(percentage,2)) + "%\t" + str(i*batchsize) +
+                  " data processed\ttime passed: " + str(act_time-start_time)))
     
-    print("100%\t" + str(num_data) + " data processed\ttime passed: " +
-          str(act_time-start_time))
+    print(("100%\t" + str(num_data) + " data processed\ttime passed: " +
+          str(act_time-start_time)))
     
     filerel = open(name + "_reliability.txt", 'a')
     filerel.write("Test on: " + datasetname)
@@ -368,7 +368,7 @@ def test_networks_reliability(datasetname, expanded, name,
     act_time = time.time()
     
     
-    print("Time occurred: " + str(act_time-start_time))
+    print(("Time occurred: " + str(act_time-start_time)))
 
 
 
@@ -570,26 +570,26 @@ def test_networks(datasetname, statesonly, expanded, name,
         The name of the network configuration to load
     """
     
-    print("Testing " + name)
+    print(("Testing " + name))
     print("Loading networks...")
-    print("\tloading " + name + "_TO")
+    print(("\tloading " + name + "_TO"))
     TOnet = load_net(name + "_TO")
-    print("\tloading " + name + "_FROM")
+    print(("\tloading " + name + "_FROM"))
     FROMnet = load_net(name + "_FROM") 
 
-    print("\tloading " + name + "_REMOVE")
+    print(("\tloading " + name + "_REMOVE"))
     REMOVEnet = load_net(name + "_REMOVE")
     print("\tNetworks loaded!")
     
     data_format = TOnet[3]
-    print(str(data_format))
+    print((str(data_format)))
     
     orderc = ['X', 'X', 'X']
     orderc[TOnet[2]] = 'T'
     orderc[FROMnet[2]] = 'F'
     orderc[REMOVEnet[2]] = 'R'
     order = "" + orderc[0] + orderc[1] + orderc[2]
-    print("\tOrder: " + order)
+    print(("\tOrder: " + order))
     
     print("Loading data...")
     
@@ -604,7 +604,7 @@ def test_networks(datasetname, statesonly, expanded, name,
         else:
             A, B = load_dataset(datasetname)
 
-    print("\tData loaded! Loaded: " + str(len(B)) + " data")
+    print(("\tData loaded! Loaded: " + str(len(B)) + " data"))
 
     print("Processing data and getting choices")
     X_TO_set = []
@@ -622,7 +622,7 @@ def test_networks(datasetname, statesonly, expanded, name,
     numbatch = int(len(A) / batchsize) + 1
 
     for i in range(1, numbatch + 1):
-        print("\t" + str(i * batchsize * 100.0 / len(A)) + "%")
+        print(("\t" + str(i * batchsize * 100.0 / len(A)) + "%"))
 
         if (i * batchsize <= len(A)):
             Ai = A[(i-1) * batchsize: i * batchsize]
@@ -751,7 +751,7 @@ def test_networks(datasetname, statesonly, expanded, name,
     legalities = get_legalities(TO_choice, FROM_choice,
                                 REMOVE_choice, X_REMOVE, data_format)
     
-    print("\ttesting the legality of " + str(len(legalities[0])) + " data\n")
+    print(("\ttesting the legality of " + str(len(legalities[0])) + " data\n"))
     
     TO_self_leg = legalities[0]
     FROM_self_leg = legalities[1]
@@ -812,7 +812,7 @@ def test_networks(datasetname, statesonly, expanded, name,
     
     size = len(TO_choice)
     
-    print("\tTesting the accuracy of " + str(size) + " data")
+    print(("\tTesting the accuracy of " + str(size) + " data"))
     
     for i in range (size):
 

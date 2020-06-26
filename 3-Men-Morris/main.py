@@ -10,13 +10,13 @@ ai_depth = 4
 
 def boardOutput(board):
 		
-		print(board[0]+"(0)----------------------"+board[1]+"(1)----------------------"+board[2]+"(2)");
+		print((board[0]+"(0)----------------------"+board[1]+"(1)----------------------"+board[2]+"(2)"));
 		print("|                          |                         |");
 		print("|                          |                         |");
-		print(board[3]+"(3)----------------------"+board[4]+"(4)----------------------"+board[5]+"(5)");
+		print((board[3]+"(3)----------------------"+board[4]+"(4)----------------------"+board[5]+"(5)"));
 		print("|                          |                         |");
 		print("|                          |                         |");
-		print(board[6]+"(6)----------------------"+board[7]+"(7)----------------------"+board[8]+"(8)");
+		print((board[6]+"(6)----------------------"+board[7]+"(7)----------------------"+board[8]+"(8)"));
 			
 
 def AI_VS_AI(heuristic1, heuristic2):
@@ -85,7 +85,7 @@ def HUMAN_VS_AI(heuristic_stage1, heuristic_stage23):
 		while not finished:
 			try:
 
-				pos = int(input("\nPlace '₣' piece: "))	
+				pos = int(eval(input("\nPlace '₣' piece: ")))	
 				if board[pos] == "X":
 					board[pos] = '₣'
 					if isCloseMill(pos, board):
@@ -126,15 +126,15 @@ def HUMAN_VS_AI(heuristic_stage1, heuristic_stage23):
 		userHasMoved = False
 		while not userHasMoved:
 			try:
-				pos = int(input("\nMove '1' piece: "))
+				pos = int(eval(input("\nMove '1' piece: ")))
 
 				while board[pos] != '₣':
-					pos = int(input("\nMove '₣' piece: ")) 
+					pos = int(eval(input("\nMove '₣' piece: "))) 
 
 				userHasPlaced = False
 				while not userHasPlaced:
 
-					newPos = int(input("'1' New Location: "))
+					newPos = int(eval(input("'1' New Location: ")))
 
 					if board[newPos] == "X":
 						board[pos] = 'X'
@@ -146,7 +146,7 @@ def HUMAN_VS_AI(heuristic_stage1, heuristic_stage23):
 							while not userHasRemoved:
 								try:
 
-									pos = int(input("\nRemove '2' piece: "))
+									pos = int(eval(input("\nRemove '2' piece: ")))
 									
 									if board[pos] == "€" and not isCloseMill(pos, board) or (isCloseMill(pos, board) and getNumberOfPieces(board, "₣") == 3):
 										board[pos] = "X"
@@ -186,10 +186,10 @@ if __name__ == "__main__":
 	print("==========================")
 	print("1. Is Human vs AI")
 	print("2. Is AI vs AI")
-	gametype = input("Please enter 1 or 2: ")
+	gametype = eval(input("Please enter 1 or 2: "))
 
 	while gametype != "1" and gametype != "2":
-		gametype = input("Please enter 1 or 2: ")
+		gametype = eval(input("Please enter 1 or 2: "))
 
 	if gametype == "1":
 		HUMAN_VS_AI(numberOfPiecesHeuristic, AdvancedHeuristic)

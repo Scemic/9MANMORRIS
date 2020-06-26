@@ -13,7 +13,7 @@ class Board:
         board = ' '
         for i in self.board_array:
             board = board + str(i)
-        print(len(board))
+        print((len(board)))
         out = board[1]+"(1)----------------------"+board[2]+"(2)----------------------"+board[3]+"(3)\n" \
         	 + "|                           |                           |\n" \
         	 +   "|       "+board[4]+"(4)--------------"+board[5]+"(5)--------------"+board[6]+"(6)     	| \n" \

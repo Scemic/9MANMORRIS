@@ -7,7 +7,7 @@ __version__ = "1.1.1"
 __email__ = "a.galassi@unibo.it"
 
 import lasagne
-import cPickle as pickle
+import pickle as pickle
 import numpy
 import theano
 import theano.tensor as T

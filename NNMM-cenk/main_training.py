@@ -37,9 +37,9 @@ def main():
 if __name__ == '__main__':
     kwargs = {}
     if ('--help' in sys.argv) or ('-h' in sys.argv):
-        print("Neural Nine Men's Morris\n" +
+        print(("Neural Nine Men's Morris\n" +
               "Training of the networks. Change the parameters in this file" +
-              "to configure training")
+              "to configure training"))
     elif len(sys.argv) == 1 :
         main(**kwargs)
 

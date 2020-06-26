@@ -99,7 +99,7 @@ while not stopped:
     print(b)
 
     # Choose our input
-    our_pos = int(input('Give position to place marker (1-24): '))
+    our_pos = int(eval(input('Give position to place marker (1-24): ')))
     our[our_pos-1] = 1
     b.place_marker(pos=our_pos-1,player_num=1)
 
