@@ -48,7 +48,7 @@ class Board:
             return False
 
         self.check_num_markers()
-        self.check_mill()
+        #self.check_mill()
         return True
 
     def move_marker(self,FROM, TO):
@@ -138,6 +138,13 @@ class Board:
             sys.exit('Player 1 placed too many markers')
         if self.num_checkers_two > 9:
             sys.exit('Player 2 placed too many markers')
+
+    def convert_to_gui_array(self):
+        gui_array = np.copy(self.board_array)
+        for i in range(self.board_array.shape[0]):
+            if self.board_array[i] == 2:
+                gui_array[i] = -1
+        return gui_array
 
 
 if __name__ == '__main__':
