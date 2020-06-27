@@ -1,7 +1,7 @@
 import dimod
 from dwave.system.samplers import DWaveSampler
 from dwave.system.composites import EmbeddingComposite
-from .board import Board
+from board import Board
 import numpy as np
 import sys
 

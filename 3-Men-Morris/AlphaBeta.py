@@ -1,5 +1,5 @@
-from .BoardLogic import *
-from .Utility import *
+from BoardLogic import *
+from Utility import *
 
 pruned = 0
 states_reached = 0

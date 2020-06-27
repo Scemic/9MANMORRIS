@@ -29,10 +29,10 @@ import sys
 import socket
 
 
-from .dataprocessing import (process_state_binary, add_CHOICE_binary_raw,
-                             process_game_line)
-from .legality import get_legalities
-from .networks import load_net
+from dataprocessing import (process_state_binary, add_CHOICE_binary_raw,
+                            process_game_line)
+from legality import get_legalities
+from networks import load_net
 
 illegalTO = 0
 illegalFROM = 0

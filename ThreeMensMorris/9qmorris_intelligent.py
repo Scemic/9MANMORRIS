@@ -1,13 +1,13 @@
 import dimod
 from dwave.system.samplers import DWaveSampler
 from dwave.system.composites import EmbeddingComposite
-from .board24 import Board
-from .morris import GameState
+from board24 import Board
+import morris
 import pygame
 import numpy as np
 import sys
 
-game = GameState()
+game = morris.GameState()
 
 num_spots = 24
 max_checkers = 18

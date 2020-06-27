@@ -1,6 +1,6 @@
-from .AlphaBeta import *
-from .BoardLogic import *
-from .heuristics import *
+from AlphaBeta import *
+from BoardLogic import *
+from heuristics import *
 import time
 
 alpha = float('-inf')

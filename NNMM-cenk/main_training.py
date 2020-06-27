@@ -9,7 +9,7 @@ __email__ = "a.galassi@unibo.it"
 import sys
 import lasagne.regularization as rgl
 
-from .training import train
+from training import train
 
 
 def main():

@@ -16,13 +16,13 @@ import sys
 import random
 import os.path
 
-from .networks import (build_ffnet, build_densenet, build_resnet,
-                       load_net_weights, save_net_weights)
-from .dataprocessing import (load_dataset, load_expanded_dataset,
-                             process_state_binary, process_move_onlyTO,
-                             process_move_onlyFROM, process_move_onlyREMOVE,
-                             add_CHOICE_binary_raw, load_indexes,
-                             write_indexes)
+from networks import (build_ffnet, build_densenet, build_resnet,
+                      load_net_weights, save_net_weights)
+from dataprocessing import (load_dataset, load_expanded_dataset,
+                            process_state_binary, process_move_onlyTO,
+                            process_move_onlyFROM, process_move_onlyREMOVE,
+                            add_CHOICE_binary_raw, load_indexes,
+                            write_indexes)
 
 
 def train(name='prova',

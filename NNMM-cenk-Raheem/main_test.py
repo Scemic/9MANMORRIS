@@ -8,7 +8,7 @@ __email__ = "a.galassi@unibo.it"
 
 import sys
 
-from .testing import test_networks
+from testing import test_networks
 
 def main(datasetname='DATASET.mock.txt',
          statesonly=False,

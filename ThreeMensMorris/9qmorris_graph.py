@@ -3,7 +3,7 @@ from dwave.system.samplers import DWaveSampler
 import networkx as nx
 import dwave_networkx as dnx
 from dwave.system.composites import EmbeddingComposite
-from .board24 import Board
+from board24 import Board
 import matplotlib.pyplot as plt
 import minorminer
 import numpy as np

@@ -1,4 +1,4 @@
-from .Utility import *
+from Utility import *
 import copy
 
 def adjacentLocations(position):
