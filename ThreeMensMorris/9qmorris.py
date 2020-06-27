@@ -53,7 +53,8 @@ while not stopped:
     # Set interactions, i.e. update quadratic
     for i in range(num_spots):
         if enemy[i]:
-            idx = b.get_rowcol_idx(i)
+            #idx = b.get_rowcol_idx(i) # This is the original
+            idx = b.get_neighbor_idx(i)
             for j in idx:
                 if i > j:
                     quadratic[(j+1,i+1)] += -j_const
@@ -64,7 +65,8 @@ while not stopped:
     for i in range(0,num_spots):
         if enemy[i] == 0:
             continue
-        idx = b.get_rowcol_idx(i)
+        #idx = b.get_rowcol_idx(i) # This is the original
+        idx = b.get_neighbor_idx(i)
         for j in idx:
             if i < j:
                 quadratic[(i+1,j+1)] -= 2*mill_constant
@@ -73,7 +75,8 @@ while not stopped:
     for i in range(0,num_spots):
         if our[i] == 0:
             continue
-        idx = b.get_rowcol_idx(i)
+        #idx = b.get_rowcol_idx(i) # This is the original
+        idx = b.get_neighbor_idx(i)
         for j in idx:
             if i < j:
                 quadratic[(i+1,j+1)] -= 2*anti_mill_constant
@@ -89,19 +92,23 @@ while not stopped:
     sample_set = sampler.sample(bqm,num_reads=10)
     #sampler = dimod.ExactSolver()
     #sample_set = sampler.sample(bqm)
-    print(sample_set)
+    print("sample_set:", sample_set)
     next_state = sample_set.samples()[0] # Maybe do sampling instead??
+    print("next_state:",next_state)
     for i in range(1,num_spots+1):
-        if next_state[i]==1:
+        if next_state[i]==1 and enemy[i-1] != 1:
             enemy[i-1]=1
             b.place_marker(pos=i-1,player_num=2)
     print(enemy)
     print(b)
-
+    
     # Choose our input
     our_pos = int(eval(input('Give position to place marker (1-24): ')))
     our[our_pos-1] = 1
     b.place_marker(pos=our_pos-1,player_num=1)
-
-
+    
+    print("Linear size :",len(linear))
+    print("Quadratic size :",len(quadratic))
+    
+    
     #stopped = True

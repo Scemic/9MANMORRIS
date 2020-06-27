@@ -8,8 +8,10 @@ class Board:
         self.num_checkers_one = 0
         self.num_checkers_two = 0
         self.phase = 0
-
+        self.mills = []
+        
     def __str__(self):
+        print("Board :",self.board_array)
         board = ' '
         for i in self.board_array:
             board = board + str(i)
@@ -33,6 +35,7 @@ class Board:
         	 + "|                           |                           |\n" \
         	 + board[22]+"(22)----------------------"+board[23]+"(23)----------------------"+board[24]+"(24)\n"
         return out
+    
     def place_marker(self,pos, player_num):
         # Check if position is vacant
         if self.board_array[pos] == player_num:
@@ -48,7 +51,7 @@ class Board:
             return False
 
         self.check_num_markers()
-        #self.check_mill()
+        self.check_mill()
         return True
 
     def move_marker(self,FROM, TO):
@@ -64,7 +67,36 @@ class Board:
         self.board_array[TO] = tmp
         self.check_mill()
         return True
-
+    
+    
+    def remove_marker(self,pos,player_removing):
+        if self.board_array[pos] == 0:
+            print("No marker to remove :(")
+            return False
+        if self.board_array[pos] == player_removing:
+            print("This is one of yours mate")
+            return False
+        # Sorry this is disgusting, change later
+        if player_removing == 1:
+            player = 2
+        else:
+            player = 1
+        if  any(self.board_array[pos] in mill for mill in self.mills) and not check_only_mills(player):
+            print("Are you really trying to remove a mill's marker? Try again")
+            return False
+        # Remove the marker
+        self.board_array[pos] = 0
+        print("HELLO::::::",pos,self.board_array[pos])
+        return True
+    
+    # This method checks if a player only has marker present in mills, in which case they are removeable
+    def check_only_mills(self,player_num):
+        for idx,marker in enumerate(self.board): 
+            if marker == player_num:
+                if not any(idx in mill for mill in self.mills):
+                    return False
+        return True
+    
     def check_mill(self):
         neighbors = [
         [0,1,2],[3,4,5],[6,7,8],[9,10,11],[12,13,14],[15,16,17],[18,19,20],[21,22,23],
@@ -77,7 +109,40 @@ class Board:
             if np.array_equal(self.board_array[neighbor],np.array([2,2,2])):
                 print(self)
                 sys.exit('Player number 2 wins!')
-
+                
+    def check_mill(self):
+            neighbors = [
+            [0,1,2],[3,4,5],[6,7,8],[9,10,11],[12,13,14],[15,16,17],[18,19,20],[21,22,23],
+            [0,9,21],[3,10,18],[6,11,15],[1,4,7],[16,19,22],[8,12,17],[5,13,20],[2,14,22]
+            ]
+            
+            for neighbor in neighbors:
+                if np.array_equal(self.board_array[neighbor],np.array([1,1,1])) and neighbor not in self.mills:
+                    print(self)
+                    
+                    self.mills.append(neighbor) # We store the completed mill
+                    #sys.exit('Player number 1 wins!')
+                    print("You may remove one of the enemy's marker!")
+                   
+                    res = False
+                    while not res:
+                        selected_pos = input("Selected position > ")
+                        res = self.remove_marker(int(selected_pos) - 1,1) # Player 1 here
+                    
+                if np.array_equal(self.board_array[neighbor],np.array([2,2,2])) and neighbor not in self.mills:
+                    print(self)
+                    self.mills.append(neighbor) # We store the completed mill
+                    #sys.exit('Player number 2 wins!')
+                    #AI stuff here
+                    # Temporary "solution" before ML
+                    print("The filthy AI may remove one of your marker!")
+                    
+                    for idx,marker in enumerate(self.board_array):
+                        if marker == 1:
+                            if self.remove_marker(idx,2): # AI here
+                                break
+                
+                        
     def get_neighbor_idx(self,pos):
         if pos == 0: return [1,9]
         if pos == 1: return [0,2,4]
