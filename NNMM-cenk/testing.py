@@ -15,7 +15,7 @@ import sys
 import lasagne.regularization as rgl
 import pprint
 
-from network import (load_net, get_predictions, get_choices)
+from networks import (load_net, get_predictions, get_choices)
 from dataprocessing import (load_expanded_states_dataset, load_states_dataset,
                             process_state_binary, add_CHOICE_binary_raw,
                             load_expanded_dataset, load_dataset,
