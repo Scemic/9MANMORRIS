@@ -9,7 +9,8 @@ dwave-system==0.9.6
 dwave-tabu==0.3.0
 homebase==1.0.1
 idna==2.9
-Lasagne==0.2.dev1
+https://github.com/Theano/Theano/archive/master.zip
+https://github.com/Lasagne/Lasagne/archive/master.zip
 minorminer==0.1.9
 networkx==2.4
 numpy==1.19.0
@@ -19,5 +20,4 @@ python-dateutil==2.8.1
 requests==2.24.0
 scipy==1.5.0
 six==1.15.0
-Theano==1.0.4+unknown
 urllib3==1.25.9
