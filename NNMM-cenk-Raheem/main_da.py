@@ -8,7 +8,7 @@ __email__ = "a.galassi@unibo.it"
 
 import sys
 
-from dataprocessing import *
+from .dataprocessing import *
 
 def main(datasetname='DATASET.mock.txt',
          statesonly=False,

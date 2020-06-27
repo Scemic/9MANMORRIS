@@ -1,4 +1,4 @@
-from BoardLogic import *
+from .BoardLogic import *
 
 def numberOfPiecesHeuristic(board, isStage1):
 	'''

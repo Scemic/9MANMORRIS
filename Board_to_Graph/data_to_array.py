@@ -1,4 +1,4 @@
-from dataprocessing import State, load_dataset
+from .dataprocessing import State, load_dataset
 import numpy as np
 
 # Set filename to load and load states and moves
