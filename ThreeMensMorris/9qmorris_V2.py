@@ -130,10 +130,14 @@ while not is_gameover:
     print(b)
     
     # Player makes a move
-    move_input = input('Move one of your markers (From-to) >>')
-    From,To = move_input.split("-")
-    b.move_marker(int(From)-1,int(To)-1,1)
-    
+    valid_play = False
+    while not valid_play:
+        try :
+            move_input = input('Move one of your markers (From-to) >>')
+            From,To = move_input.split("-")
+            valid_play = b.move_marker(int(From)-1,int(To)-1,1)
+        except:
+            print("Are you sure what you inputed is valid? >:( ")
     print(b)
     
     is_gameover = b.check_game_over()

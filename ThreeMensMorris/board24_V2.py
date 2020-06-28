@@ -74,11 +74,12 @@ class Board:
             return False
         
         if TO in self.get_neighbor_idx(FROM):
-            self.fly_marker(FROM,TO)
+            result = self.fly_marker(FROM,TO)
             print(str(player_moving)+ " moved from ", FROM + 1, " to ",TO + 1)
-            self.check_mill()
-            self.remove_mill_if_altered(FROM) # might break
-            return True
+            # Both those are already in fly_marker!
+            #self.check_mill()                
+            #self.remove_mill_if_altered(FROM) # might break
+            return result # We return whatever fly_marker has determined
         else:
             print("You cannot move the marker here!")
             return False
@@ -133,7 +134,7 @@ class Board:
     
     # This method checks if a player only has marker present in mills, in which case they are removeable
     def check_only_mills(self,player_num):
-        for idx,marker in enumerate(self.board): 
+        for idx,marker in enumerate(self.board_array): 
             if marker == player_num:
                 if not any(idx in mill for mill in self.mills):
                     return False
