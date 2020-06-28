@@ -4,7 +4,18 @@ from dwave.system.composites import EmbeddingComposite
 from board24 import Board
 import numpy as np
 import sys
+from networks import load_net
+import lasagne
 
+
+# Network shenanigans----------------
+name = 'trained_networks/TFR/TEST-rawest-TFR'
+inputREMOVE, REMOVEnetwork, numREMOVE, dataformat = load_net(name + "_REMOVE")
+
+REMOVEpred = lasagne.layers.get_output(REMOVEnetwork, deterministic=True)
+REMOVEpred_fn = theano.function(
+        [inputREMOVE], REMOVEpred, name="REMOVE prediction function")
+#------------------------------------
 
 num_spots = 24
 max_checkers = 18
