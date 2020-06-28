@@ -26,5 +26,16 @@ Work on you VirtualEnv, if you have one set up, and run
 ```
 dwave config create
 ```
-Just press enter at every stage except for `Authentication token`.
 Enter your API token here, which can be found on the D-Wave dashbaord.
+The output shown below includes the interactive prompts and placeholder replies.
+```
+$ dwave config create
+Configuration file not found; the default location is: /home/jane/.config/dwave/dwave.conf
+Confirm configuration file path [/home/jane/.config/dwave/dwave.conf]:
+Profile (create new) [prod]:
+API endpoint URL [skip]:
+Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef
+Default client class (qpu or sw) [qpu]:
+Default solver [skip]:
+Configuration saved.
+```
