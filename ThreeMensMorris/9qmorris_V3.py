@@ -5,7 +5,7 @@ from board24_V3 import Board
 import numpy as np
 import sys
 
-
+# I made this - Walter
 num_spots = 24
 max_checkers = 18
 our = np.zeros(num_spots,dtype=int)
@@ -115,7 +115,7 @@ while not stopped:
     print("Linear size :",len(linear))
     print("Quadratic size :",len(quadratic))
     
-    if play_counter >= max_checkers - 10: # Temporary for testing
+    if play_counter >= max_checkers: #- 10: # Temporary for testing
         stopped = True
         print("End of phase 1")
         print("Phase 2 begins  (Walter's rules ;) ) ")
